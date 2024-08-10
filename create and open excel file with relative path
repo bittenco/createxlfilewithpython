@@ -54,3 +54,48 @@ wb.save(output_path)
 
 output_path
 
+# 1. Locate the File
+#Since you used a relative path (output_path = 'Kenya_Energy_Project_Model_v4.xlsx'), the file will be saved in the directory where you executed the script. 
+#If you are using a terminal or command line, this is typically the directory you were in when you ran the script.
+
+#2. Open the File
+#There are several ways to open the file:
+
+#Directly via Excel:
+#Navigate to the directory where the script is located.
+#Find the Kenya_Energy_Project_Model_v4.xlsx file.
+#Double-click the file, and it should open in Excel.
+
+
+#Using Python (if you want to open it programmatically):
+#You can use Python to open the file, though it will require additional libraries like os to automate opening Excel or viewing the file location.
+
+#For Mac, you would use:
+
+import subprocess
+
+# Open the file directly on macOS
+subprocess.run(['open', output_path])
+
+#Via Jupyter Notebook:
+#If you're running this in a Jupyter Notebook, you can also create a download link to access the file directly.
+
+import IPython.display as display
+
+# Create a download link in Jupyter Notebook
+display.FileLink(output_path)
+
+#3. Check the Directory in Jupyter Notebook
+#If you're not sure where the file was saved, you can check your current working directory in Jupyter Notebook with:
+
+import os
+print(os.getcwd())
+
+#This will print out the directory where your file was saved.
+
+#---> but once I went to the directory and deleted it manually to test it. 
+#the code still said some file was thre, so change to this:
+
+import os
+print(os.path.isfile('Kenya_Energy_Project_Model_v4.xlsx'))
+# the answer it gave me was "false", so that was correct
