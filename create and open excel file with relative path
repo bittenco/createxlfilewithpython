@@ -1,0 +1,56 @@
+# start my env
+source myenv/bin/activate
+# install openpyxl which is a Library to can create and open excel files with Python
+pip install openpyxl
+# open jupyter notebook:
+jupyter notebook
+# use the coding to open it with relative path:
+import openpyxl
+
+# Create a new Excel workbook
+wb = openpyxl.Workbook()
+
+# Create sheet names similar to the provided file
+sheet_names = ['Instructions', 'Assumptions', 'Workings', 'Cash Flow', 'Sensitivity Analysis']
+
+# Rename the default sheet and create additional ones
+wb.active.title = sheet_names[0]
+for name in sheet_names[1:]:
+    wb.create_sheet(title=name)
+
+# Adding instructions to the Instructions sheet
+instructions_sheet = wb[sheet_names[0]]
+instructions_sheet.append(["Instructions"])
+instructions_sheet.append(["This financial model is for a renewable energy project in Kenya, focusing on a 100 MW solar farm."])
+instructions_sheet.append(["Please refer to the Assumptions sheet for key input data and modify them as necessary."])
+instructions_sheet.append(["The Workings sheet contains detailed calculations, while the Cash Flow and Sensitivity Analysis sheets summarize the financial outputs."])
+
+# Adding assumptions to the Assumptions sheet
+assumptions_sheet = wb[sheet_names[1]]
+assumptions_sheet.append(["Assumptions", "", "Inputs - Economic & Funding"])
+assumptions_sheet.append(["", "", "Start Date / Base Date for Costs (year ending)", "2023-03-31"])
+assumptions_sheet.append(["", "", "Inflation Rate (RPI)", 0.025])
+assumptions_sheet.append(["", "", "Debt Interest Rate", 0.06])
+assumptions_sheet.append(["", "", "Debt Term (Years)", 10])
+assumptions_sheet.append(["", "", "Equity Financing", 50000000])
+assumptions_sheet.append(["", "", "Debt Financing", 70000000])
+assumptions_sheet.append(["", "", "Discount Rate", 0.10])
+assumptions_sheet.append(["", "", "Tax Rate", 0.30])
+
+assumptions_sheet.append(["", "", "Inputs - Business"])
+assumptions_sheet.append(["", "", "Project Capacity (MW)", 100])
+assumptions_sheet.append(["", "", "Capacity Factor", 0.20])
+assumptions_sheet.append(["", "", "Electricity Price ($/kWh)", 0.08])
+assumptions_sheet.append(["", "", "Revenue Growth Rate", 0.005])
+assumptions_sheet.append(["", "", "O&M Costs ($)", 2000000])
+assumptions_sheet.append(["", "", "O&M Cost Growth Rate", 0.005])
+assumptions_sheet.append(["", "", "Administrative Overheads ($)", 250000])
+assumptions_sheet.append(["", "", "Depreciation Period (Years)", 20])
+assumptions_sheet.append(["", "", "Terminal Value Growth Rate", 0.02])
+
+# Save the file
+output_path = output_path = 'Kenya_Energy_Project_Model_v4.xlsx'
+wb.save(output_path)
+
+output_path
+
